@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<stdlib.h>
+// self referential structure example below
+// stdlib.h libary is used to call malloc function
+struct node{
+    int data;
+    struct node*link;
+};
+int main()
+{
+    struct node*head=NULL;
+    // now head contains null
+    head=(struct node*)malloc(sizeof(struct node));
+    // malloc function is used for memeory allocation
+    head->data=45;
+    //now head contains the address of 45 which point to the struct node
+    head->link=NULL;
+    // the pointer of the node which contain 45 becomes null
+    printf("%d",head->data);
+    return 0;
+}
