@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<stdlib.h>
+// this code used to find out how much nodes are there in the linked list
+struct node
+{
+    int data;
+    struct node *link;
+};
+
+// Function prototype declare the function
+void count_of_nodes(struct node *head);
+
+int main()
+{
+    int data;
+    struct node *head = malloc(sizeof(struct node)); 
+    // Create first node
+    head->data = 45;
+    head->link = NULL;
+
+    struct node *current = malloc(sizeof(struct node));  
+    // Create second node
+    current->data = 90;
+    current->link = NULL;
+    head->link = current;  
+    // Link the first node to the second
+
+    current = malloc(sizeof(struct node));  
+    // Create third node
+    current->data = 3;
+    current->link = NULL;
+    head->link->link = current;  
+    // Call the function to count nodes
+    count_of_nodes(head);
+     return 0;  
+}
+void count_of_nodes(struct node *head)
+{
+    int count = 0;
+    if (head == NULL)
+    {
+        printf("Linked list is empty\n");
+        return;  // Exit the function if the list is empty
+    }
+
+    struct node *ptr = head;
+    while (ptr != NULL)
+    {
+        count++;
+        ptr = ptr->link;  // Move to the next node
+    }
+    printf("Number of nodes: %d\n", count);
+}
+OUTPUT
+Number of nodes is 3
