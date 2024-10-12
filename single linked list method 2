@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node*link;
+};
+// this is a new method without creating new pointer for each node
+int main()
+{
+    int data;
+    struct node* head=malloc(sizeof(struct node));
+    head->data=45;
+    head->link=NULL;
+    struct node* current=malloc(sizeof(struct node));
+    current->data=90;
+    current->link=NULL;
+    head->link=current;
+    // here the struct node*current is not written because this node is already created we just want to update the place of node
+    current=malloc(sizeof(struct node));
+    current->data=3;
+    current->link=NULL;
+    head->link->link=current;
+    return 0;
+}
