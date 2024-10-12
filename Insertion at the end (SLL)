@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node*link;
+};
+void add_at_end(struct node*head,int data);
+//passing head pointer directly in the function
+int main()
+{
+    int data;
+    struct node *head = malloc(sizeof(struct node)); 
+    head->data = 45;
+    head->link = NULL;
+    struct node *current = malloc(sizeof(struct node));  
+    current->data = 90;
+    current->link = NULL;
+    head->link = current;  
+    current = malloc(sizeof(struct node));  
+    current->data = 3;
+    current->link = NULL;
+    head->link->link = current;  
+    add_at_end(head,data);
+    return 0;
+}
+void add_at_end(struct node*head,int data)
+{
+    //temp is used to point the new node which is to be inserted
+    struct node*ptr,*temp;
+    ptr=head;
+    printf("enter the element to be inserted");
+    scanf("%d",&data);
+    temp=(struct node*)malloc(sizeof(struct node));
+    //creating a new node to insert which have the pointer temp
+    temp->data=data;
+    //replacing the data with user input
+    temp->link=NULL;
+    //you should traverse pointer ptr to the end and add the link of the node there
+    while(ptr->link!=NULL)
+    {
+        ptr=ptr->link;
+    }
+    ptr->link=temp;
+    printf("%d",temp->data);
+}
+
