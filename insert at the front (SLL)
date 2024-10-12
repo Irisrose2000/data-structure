@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *link;
+};
+
+// the reason why we use  return type to struct node* to return the updated head
+
+struct node* add_at_start(struct node *head, int data);
+
+int main() {
+    int data;
+    
+    // Initialize the linked list with two nodes
+    struct node *head = malloc(sizeof(struct node));
+    head->data = 45;
+    head->link = NULL;
+
+    struct node *ptr = malloc(sizeof(struct node));
+    ptr->data = 80;
+    ptr->link = NULL;
+    head->link = ptr;
+
+    // Call add_at_start and update head with the new head returned
+    head = add_at_start(head, data);
+
+    // Traverse and print the list
+    ptr = head;
+    while (ptr != NULL) {
+        printf("%d -> ", ptr->data); 
+        // Added arrow for better visualisation
+        ptr = ptr->link;
+    }
+    printf("NULL\n"); // End of the list
+
+    return 0;
+}
+
+// you are using struct node* at the beginning is the return type of updated head
+struct node* add_at_start(struct node *head, int data) {
+    printf("Enter the element to be inserted: ");
+    scanf("%d", &data);
+
+    // Create a new node and assign the data
+    struct node *ptr = malloc(sizeof(struct node));
+    ptr->data = data;
+    
+    // Point the new node's link to the current head
+    ptr->link = head;
+    
+    // Update the head to point to the new node
+    head = ptr;
+
+    // Return the updated head
+    return head;
+}
+Output
+Enter the element to be inserted: 45
+45 -> 45 -> 80 -> NULL
+
