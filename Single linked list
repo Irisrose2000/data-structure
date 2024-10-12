@@ -1,0 +1,23 @@
+CODE TO CREATE SINGLE LINKED LIST
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node*link;
+};
+int main()
+{
+    struct node*head=malloc(sizeof(struct node));
+    head->data=45;
+    head->link=NULL;
+    //here head is the pointer for the first node                                    OUTPUT :45 90
+    struct node*current =malloc(sizeof(struct node));
+    current->data=90;
+    current->link=NULL;
+    //here current is the pointer for the second node
+    head->link=current;
+    //here we are linking the head pointer link part to current 
+    printf("%d\n%d",head->data ,current->data);
+    return 0;}
+    //the reason why we created two pointer is that you can access the previous one but if it is one pointer you can’t access it
