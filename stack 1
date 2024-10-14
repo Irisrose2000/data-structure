@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<stdlib.h>//for exit(1)
+#define MAX 4// declaring the size 
+int stack_arr[MAX];// global declaration of the stack arr
+int top=-1;// this indicate stack is empty
+void push(int data);
+int pop();
+void print()
+{
+    int i;
+    for(i=top;i>=0;i--)
+    {
+        printf("%d\t",stack_arr[i]);
+    }
+}
+int main()
+{
+    int data;
+    push(1);
+    push(2);
+    push(3);
+    push(4);
+    data = pop();
+    print();
+    return 0;
+  // get value poped by function pop the value get stored in data 
+}
+void push(int data)
+{
+    if(top==MAX-1)
+    {
+        printf("Stack overflow");
+        return;
+    }
+    top=top+1;
+    stack_arr[top]=data;
+    //storing the value in the top position
+}
+int pop()
+{
+    int value;
+    if(top==-1)
+    {
+        printf("stack underflow");
+        exit(1);//faliure of the programm or abnormal termination
+    }
+    value=stack_arr[top];
+    top=top-1;
+    return value;
+}
