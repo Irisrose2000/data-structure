@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+void swap(int a[], int k, int c) {
+    int temp = a[k];
+    a[k] = a[c];
+    a[c] = temp;
+}
+
+void quick(int a[], int left, int right) {
+    int pivot, i, j;
+    if (left < right) {
+        i = left;
+        j = right + 1;
+        pivot = a[left];
+
+        // Partitioning loop
+        do {
+            do {
+                i++;
+            } while (i <= right && a[i] < pivot); // Avoid out-of-bounds with `i <= right`
+
+            do {
+                j--;
+            } while (j >= left && a[j] > pivot); // Avoid out-of-bounds with `j >= left`
+
+            if (i < j) {
+                swap(a, i, j);
+            }
+        } while (i < j);
+
+        swap(a, left, j); // Place pivot in correct position
+
+        // Recursive calls for quicksort
+        quick(a, left, j - 1);  // Sort left part
+        quick(a, j + 1, right); // Sort right part
+    }
+}
+
+int main() {
+    int i, n;
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    if (n > 5) { // Check to ensure `n` does not exceed the fixed array size
+        printf("Array size cannot exceed 5.\n");
+        return 1; // Exit if array size is too large
+    }
+
+    int a[5]; // Declare fixed array
+
+    printf("Enter the elements in the array:\n");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    quick(a, 0, n - 1);
+
+    printf("The sorted array is: ");
+    for (i = 0; i < n; i++) {
+        printf("%d\t", a[i]); // Corrected printing
+    }
+
+    return 0;
+}
