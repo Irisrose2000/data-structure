@@ -1,8 +1,9 @@
 #include <stdio.h>
 
 int main() {
-    int a[100], i, j, min, temp, n;
-    printf("Enter the size of the array:\n");
+    int a[50], i, j, b, n;
+
+    printf("Enter the array size:\n");
     scanf("%d", &n);
 
     printf("Enter the elements in the array:\n");
@@ -10,24 +11,20 @@ int main() {
         scanf("%d", &a[i]);
     }
 
-    // Selection Sort
-    for (i = 0; i < n - 1; i++) {
-        min = i;
-        for (j = i + 1; j < n; j++) {
-            if (a[j] < a[min]) {
-                min = j;
-            }
+    // Insertion Sort
+    for (i = 1; i < n; i++) {
+        b = a[i];
+        j = i - 1;
+        while (j >= 0 && a[j] > b) {
+            a[j + 1] = a[j];  // Shift elements to the right
+            j = j - 1;
         }
-        // Swap the minimum element with the current element
-        temp = a[min];
-        a[min] = a[i];
-        a[i] = temp;
+        a[j + 1] = b;  // Insert the element in the correct position
     }
 
-    printf("The sorted array is:\n");
+    printf("Sorted array:\n");
     for (i = 0; i < n; i++) {
         printf("%d\t", a[i]);
     }
-
     return 0;
 }
