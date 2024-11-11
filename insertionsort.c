@@ -1,35 +1,31 @@
-#include<stdio.h>
-int main()
-{
-    int a[5], n, i, j, b;
-    printf("Enter the size of the array: ");
+#include <stdio.h>
+
+int main() {
+    int a[100], i, j, min, temp, n;
+    printf("Enter the size of the array:\n");
     scanf("%d", &n);
+
     printf("Enter the elements in the array:\n");
-    for(i = 0; i < n; i++)
-    {
+    for (i = 0; i < n; i++) {
         scanf("%d", &a[i]);
     }
 
-    // Insertion sort logic
-    for(i = 1; i < n; i++)
-    {
-        b = a[i];  // The element to be inserted in the sorted part
-        j = i - 1;
-
-        // Move elements of the sorted part that are greater than `b` one position ahead
-        while(j >= 0 && a[j] > b)
-        {
-            a[j + 1] = a[j];
-            j = j - 1;
+    // Selection Sort
+    for (i = 0; i < n - 1; i++) {
+        min = i;
+        for (j = i + 1; j < n; j++) {
+            if (a[j] < a[min]) {
+                min = j;
+            }
         }
-
-        // Insert `b` in the correct position
-        a[j + 1] = b;
+        // Swap the minimum element with the current element
+        temp = a[min];
+        a[min] = a[i];
+        a[i] = temp;
     }
 
-    printf("The sorted array is: ");
-    for(i = 0; i < n; i++)
-    {
+    printf("The sorted array is:\n");
+    for (i = 0; i < n; i++) {
         printf("%d\t", a[i]);
     }
 
